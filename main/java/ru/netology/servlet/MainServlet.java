@@ -1,23 +1,21 @@
+package main.java.ru.netology.servlet;
 
-import main.java.ru.netology.configuration.AppConfig;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.netology.controller.PostController;
 import ru.netology.repository.PostRepository;
+
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 @WebServlet("/api/posts")
-
 public class MainServlet extends HttpServlet {
+  @Autowired
   private PostController controller;
   @Override
   public void init() {
-    ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-    controller = context.getBean(PostController.class);
+    SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
   }
 
   @Override

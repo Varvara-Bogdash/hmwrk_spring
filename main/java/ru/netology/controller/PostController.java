@@ -1,16 +1,18 @@
+package main.java.ru.netology.controller;
 
 import com.google.gson.Gson;
 import main.java.ru.netology.service.PostServiceClass;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import ru.netology.model.Post;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
-
+@Controller
 public class PostController {
-  public static final String APPLICATION_JSON = "application/json";
   private final PostServiceClass service;
-
+  @Autowired
   public PostController(PostServiceClass service) {
     this.service = service;
   }
